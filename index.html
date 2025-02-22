@@ -7,14 +7,35 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>It's My Birthday! 🎉</h1>
-        <p>Scan the QR code to send your gifts and wishes!</p>
-        <p>or send to UPIID- powerschool@ybl</p>
-        <div class="qr-container">
+    <div class="container" id="main-container">
+        <h1 id="greeting">Countdown to My Birthday! 🎉</h1>
+        <p id="countdown"></p>
+        <div class="qr-container" id="qr-section">
             <img src="qr.png" alt="Birthday QR Code">
         </div>
-        <a href="https://prashanth-portfolio.q21.in/" target="_blank" class="portfolio-link">Visit My Portfolio</a>
+        <a href="https://your-portfolio.com" target="_blank" class="portfolio-link">Visit My Portfolio</a>
     </div>
+    
+    <script>
+        function updateCountdown() {
+            const now = new Date();
+            let birthday = new Date(now.getFullYear(), 2, 1); // March 1
+            if (now > birthday) {
+                birthday.setFullYear(now.getFullYear() + 1);
+            }
+            const diff = birthday - now;
+            const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+            
+            if (days === 0) {
+                document.getElementById("greeting").innerText = "Happy Birthday to Me! 🎂🎈";
+                document.body.classList.add("celebration");
+                document.getElementById("countdown").innerText = "Let's celebrate!";
+            } else {
+                document.getElementById("countdown").innerText = days + " days left until my birthday!";
+            }
+        }
+        
+        updateCountdown();
+    </script>
 </body>
 </html>
